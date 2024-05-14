@@ -1,0 +1,33 @@
+# Fichiers Python compilés
+__pycache__/
+
+# Fichiers d'environnement virtuel
+venv/
+env/
+*.env
+
+# Fichiers de cache Jupyter
+.ipynb_checkpoints/
+
+# Fichiers générés par Jupyter
+#*.ipynb
+*.html
+*.pkl
+*.pyc
+
+# Logs
+*.log
+
+# Fichiers temporaires
+*~
+*.bak
+
+# Dépendances
+/.idea/
+/.vscode/
+/.vs/
+
+# Dossiers de sortie
+/dist/
+/build/
+*.egg-info/
