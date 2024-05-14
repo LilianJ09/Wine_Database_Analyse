@@ -2,9 +2,9 @@
 
 ## Content files
 - [x] Purpose : ProjetPersonnel.pdf
-- [ ] Jupyter file : WineQualityAnalyse.ipynb
-- [ ] Python script file : etude_database.py
-- [x] DataBase csv :  
+- [x] DataBase :
   - winequality-red.csv
   - winequality-white.csv
   - winequality.names
+- [ ] Jupyter file : WineQualityAnalyse.ipynb
+- [ ] Python script file : etude_database.py
