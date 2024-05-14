@@ -6,6 +6,10 @@ import statsmodels.api as sm
 from scipy.stats import shapiro
 import scipy.stats as stats
 
+#variables continues boxplot, histogrammes, qqplot
+#variables discretes diagrammes en batons
+#variables catégorielles camembert, diagramme à bandole
+
 def plot_boxplot_histogram_qqplot(data, title, xlabel, ylabel):
     plt.figure(figsize=(12,6))
     # Create a boxplot and a historgam for age VA
