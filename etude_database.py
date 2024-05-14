@@ -1,5 +1,3 @@
-import statistic_fct
-
 import pandas as pd #dataframe with mixed types
 import numpy as np #array with same type elements
 import matplotlib.pyplot as plt
@@ -7,6 +5,8 @@ import seaborn as sns
 import statsmodels.api as sm
 from scipy.stats import shapiro
 import scipy.stats as stats
+
+import stats_fct
 
 #variables continues (age) boxplot, histogrammes, qqplot
 #variables discretes (enfants) diagrammes en batons
@@ -25,4 +25,4 @@ fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_su
 print(Data)
 #print(fixed_acidity)
     
-statistic_fct.plot_boxplot_histogram_qqplot(fixed_acidity, 'Fixed acidity', 'Fixed acidity', 'Count')
+stats_fct.plot_boxplot_histogram_qqplot(fixed_acidity, 'Fixed acidity', 'Fixed acidity', 'Count')
