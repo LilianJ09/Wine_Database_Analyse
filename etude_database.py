@@ -1,3 +1,5 @@
+import statistic_fct
+
 import pandas as pd #dataframe with mixed types
 import numpy as np #array with same type elements
 import matplotlib.pyplot as plt
@@ -20,5 +22,7 @@ columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","ch
 #extraction de colonnes par identifiant
 fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol, quality = (Data[col] for col in columns)
 
-#print(Data)
-print(fixed_acidity)
+print(Data)
+#print(fixed_acidity)
+    
+statistic_fct.plot_boxplot_histogram_qqplot(fixed_acidity, 'Fixed acidity', 'Fixed acidity', 'Count')
