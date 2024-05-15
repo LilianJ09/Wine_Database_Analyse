@@ -45,3 +45,5 @@ print(Data)
 stats_fct.bar_plot_discrete_variables(quality, 'quality')
 stats_fct.plot_Categorial_distribution(fixed_acidity, 'fixed acidity')
 stats_fct.plot_boxplot_histogram_qqplot(volatile_acidity, 'volatile acidity', 'volatile acidity', 'Count')
+
+# test git 1 --
