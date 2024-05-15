@@ -1,5 +1,6 @@
 # Wine DataBase Analyse
 
+
 ## Content files
 - [x] Purpose : ProjetPersonnel.pdf
 - [x] DataBase :
@@ -10,5 +11,4 @@
 - [ ] Python script file : etude_database.py
 - [ ] Python file contains statistic functions : stats_fct.py
 
-
-just for test
+final test
