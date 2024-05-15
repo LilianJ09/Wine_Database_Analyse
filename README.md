@@ -11,13 +11,4 @@
 - [ ] Python script file : etude_database.py
 - [ ] Python file contains statistic functions : stats_fct.py
 
-
-just for test
-
-
-just for test
-
-
-test from dev branch 2
-
-2
+final test
