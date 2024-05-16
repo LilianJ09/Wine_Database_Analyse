@@ -14,15 +14,19 @@ import stats_fct
 
 sns.set_theme()#set seaborn_theme()
 
-Data = pd.read_csv("winequality-red.csv", sep=';', decimal='.')#load data form csv file
+#load data form csv file
+Data_red = pd.read_csv("winequality-red.csv", sep=';', decimal='.')
+
+#load data form csv file
+Data_white = pd.read_csv("winequality-white.csv", sep=';', decimal='.')
 
 #define data columns as variables for easy access
 columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide", "total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
 
 #extraction de colonnes par identifiant
-fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol, quality = (Data[col] for col in columns)
+fixed_acidity, volatile_acidity, citric_acid, residual_sugar, chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, sulphates, alcohol, quality = (Data_red[col] for col in columns)
 
-print(Data)
+print(Data_red)
 
 #creation d'une variable categorielle à partir d'une variable de float
 # Définition d'une fonction pour mapper les valeurs de la colonne à "acide" ou "basic" en fonction de la condition
@@ -33,13 +37,13 @@ def map_acidity(value):
         return "basic"
 
 # Appliquer la fonction à la colonne "fixed acidity"
-Data['fixed acidity'] = Data['fixed acidity'].apply(map_acidity)
-fixed_acidity = Data['fixed acidity']
+Data_red['fixed acidity'] = Data_red['fixed acidity'].apply(map_acidity)
+fixed_acidity = Data_red['fixed acidity']
 # Affichage du nombre d'occurrences de chaque catégorie
-#print(Data['fixed acidity'].value_counts())
+#print(Data_red['fixed acidity'].value_counts())
 
 
-print(Data)
+print(Data_red)
 #print(fixed_acidity)
 
 stats_fct.bar_plot_discrete_variables(quality, 'quality')
