@@ -63,11 +63,12 @@ def bar_plot_discrete_variables(data, title):
     
 
 #test de normalité de shapiro-wilk
+"""
+perform the Shapiro-Wilk test for normality
+Args : data (pd.Series): A pandas Series containing numeric data
+Returns : float the N test statistic, float the p-value for the hypothesis test
+"""
 def shapiro_wilk_test(data):
-    """perform the Shapiro-Wilk test for normality
-    parameters : data (pd.Series): A pandas Series containing numeric data
-    Returns : float the N test statistic, float the p-value for the hypothesis test
-    """
     #remove NaN values which can't be handled by the Shapiro-wilk, enlever les données manquantes
     data_clean = data.dropna()
     
@@ -82,3 +83,15 @@ def shapiro_wilk_test(data):
         print('X does not look Gaussian (reject H0)')
         
     return stat, p_value
+# Créer une heat map à partir d'une matrice
+def heatMap(M, title:str, center=0, vmax=1, vmin=-1):
+    plt.title(f'Table de corrélation {title}')
+    # Tracer la heatmap avec la colormap personnalisée
+    sns.heatmap(M, annot=False, cmap='coolwarm', center=center, vmax=vmax, vmin=vmin)
+    
+    # Ajouter les annotations pour chaque cellule de la heatmap
+    for i in range(len(M)):
+        for j in range(len(M)):
+            plt.text(j + 0.5, i + 0.5, '{:.2f}'.format(M.iloc[i, j]),
+                     ha='center', va='center', color='black', fontsize=9)
+    plt.show()
