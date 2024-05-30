@@ -117,6 +117,7 @@ def linear_simple_regression(X, Y, x_label, y_label):
     f_statistic = model.fvalue
     f_pvalue = model.f_pvalue
     print(f"Statistique F: {f_statistic:0.3f}")
+    #p value tres proche de 0 si la pente du modèle n'est pas nulle (variables dependantes)
     print(f"P-valeur de la statistique F: {f_pvalue:.2e}")
 
     # Tracé du graphique de dispersion

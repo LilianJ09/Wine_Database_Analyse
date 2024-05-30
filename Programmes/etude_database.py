@@ -92,12 +92,15 @@ M_corr_white = num_data_white.corr()
 #my.heatMap(M_corr_white, 'Vin blanc')
 
 #-------- TABLE DE L'ANOVA --------#
+#on sépare la population en 3 groupe en fonction de la qualité :
+#H0 : les densités moyennes des 3 groupes sont égales
+#H1 : Au moins 2 groupes on des densités moyennes différentes
 model = ols('alcohol ~ categorized_quality', data=all_data_red).fit()# Définir le modèle
 anova_table = sm.stats.anova_lm(model, typ=2)# Effectuer l'ANOVA
 print(anova_table)
-A = all_data_red[all_data_red['categorized quality'] == 'good']['alcohol']
-B = all_data_red[all_data_red['categorized quality'] == 'medium']['alcohol']
-C = all_data_red[all_data_red['categorized quality'] == 'bad']['alcohol']
+A = all_data_red[all_data_red['categorized quality'] == 'good']['density']
+B = all_data_red[all_data_red['categorized quality'] == 'medium']['density']
+C = all_data_red[all_data_red['categorized quality'] == 'bad']['density']
 f_value, p_value = stats.f_oneway(A, B, C)
 print(f'f_value : {f_value:0.4}, p_value : {p_value:0.4}')
 # Interprétation de l'ANOVA
@@ -106,7 +109,9 @@ if p_value < alpha:
     print("Au risque de 5%, la concentration moyenne en alchool diffère significativement entre les vins des 3 indexs de qualité.\n")
 else:
     print("Au risque de 5%, il n'y a aucune différence significative des concentrations moyennes en alchool entre les vins des 3 indexs de qualité.\n")
+
 '''
+#save plot in a folder
 for i in num_data_red.items():
     my.plot_boxplot_histogram_qqplot(i[1], 'Red wine : '+ i[0], i[0], 'Count')
     
