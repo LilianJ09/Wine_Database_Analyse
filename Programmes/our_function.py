@@ -89,7 +89,7 @@ perform the Shapiro-Wilk test for normality
 Args : data (pd.Series): A pandas Series containing numeric data
 Returns : float the N test statistic, float the p-value for the hypothesis test
 """
-def shapiro_wilk_test(data):
+def shapiro_wilk_test(data, title):
     #remove NaN values which can't be handled by the Shapiro-wilk, enlever les données manquantes
     data_clean = data.dropna()
     
@@ -99,9 +99,9 @@ def shapiro_wilk_test(data):
     #interpreting the result
     alpha = 0.05
     if p_value>alpha:
-        print('X looks Gaussian (fail to reject H0)')
+        print(f'{title} looks Gaussian (fail to reject H0)')
     else:
-        print('X does not look Gaussian (reject H0)')
+        print(f'{title} does not look Gaussian (reject H0)')
         
     return stat, p_value
 # Créer une heat map à partir d'une matrice
@@ -115,4 +115,55 @@ def heatMap(M, title:str, center=0, vmax=1, vmin=-1):
         for j in range(len(M)):
             plt.text(j + 0.5, i + 0.5, '{:.2f}'.format(M.iloc[i, j]),
                      ha='center', va='center', color='black', fontsize=9)
+    plt.show()
+    
+    
+#regression lineaire simple pour predire la variable Y en fonction de la variable X
+def linear_simple_regression(X, Y, x_label, y_label):
+    X_saved = X#without intercept
+    X = sm.add_constant(X) # Ajoute une colonne pour l'intercept
+    # Construction du modele
+    model = sm.OLS(Y, X).fit()
+    print(model.summary())
+    #print(X.describe())
+    #print(Y.describe())
+    # Récupération de la pente, de l'ordonnée à l'origine et du coefficient de détermination R^2
+    intercept = model.params.iloc[0]
+    slope = model.params.iloc[1]
+    r_squared = model.rsquared
+    print(f"Ordonnée à l'origine (intercept): {intercept:0.5f}")
+    print(f"Pente (slope): {slope:0.5f}")
+    print(f"Coefficient de détermination (R^2): {r_squared:0.3f}")
+    # Récupération de la statistique F et de sa p-valeur
+    f_statistic = model.fvalue
+    f_pvalue = model.f_pvalue
+    print(f"Statistique F: {f_statistic:0.3f}")
+    #p value tres proche de 0 si la pente du modèle n'est pas nulle (variables dependantes)
+    print(f"P-valeur de la statistique F: {f_pvalue:.2e}")
+
+    # Tracé du graphique de dispersion
+    plt.scatter(X_saved, Y, label="Données")
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(x_label + " vs " + y_label)
+    # Tracé de la ligne de régression
+    plt.plot(X_saved, model.fittedvalues, color='red', linestyle='--', label="Ligne de régression")
+    plt.legend()
+    plt.show()
+
+    # Diagnostics de regression
+    # Residus vs valeurs predites pour verifier l’homoscedasticite
+    plt.scatter(model.fittedvalues, model.resid)
+    plt.xlabel("Valeurs Prédites")
+    plt.ylabel("Résidus")
+    plt.title("Résidus vs Valeurs Prédites")
+    plt.axhline(y=0, color='red', linestyle='--')
+    plt.show()
+    # Q-Q plot pour verifier la normalite des residus
+    fig = sm.qqplot(model.resid, line='s')
+    plt.title('Q-Q plot des residus')
+    plt.show()
+    # Histogramme des residus pour verifier la normalite
+    plt.hist(model.resid, bins=30, edgecolor='k', alpha=0.65)
+    plt.title('Histogramme des residus')
     plt.show()
