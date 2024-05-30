@@ -33,7 +33,7 @@ def plot_boxplot_histogram_qqplot(data, title, xlabel, ylabel):
     #pour l'age, les données empiriques et théroqies sont bien ajustées, ecart seulemen,t sur les grandes valeurs
     #parametres défini de la loi normales sont ceux de notre jeu de données
     plt.title(f'QQ Plot of {title}')
-    plt.suptitle(f'Variable continue : {title}', fontsize=15, y=0.97)  # Ajout du titre global
+    plt.suptitle(title, fontsize=15, y=0.97)  # Ajout du titre global
     plt.tight_layout()
     plt.show()
     
@@ -49,15 +49,15 @@ def plot_Categorial_distribution(data, title):
     plt.show()
     
 
-def bar_plot_discrete_variables(data, title):
+def bar_plot_discrete_variables(data, title, xlabel, ylabel = 'Frequency'):
     #diagramme en batons
     frequencies = data.value_counts(normalize=True)
     sns.barplot(x=frequencies.index, y=frequencies.values)
-    plt.title(f'Diagramme en bâtons nombre {title}')
-    plt.xlabel(f'{title}')
-    plt.ylabel('Frequency')
+    plt.title(f'Bar plot : {ylabel} of {xlabel}')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
     #plt.xticks(rotation=45)  # Rotation des étiquettes sur l'axe des x pour une meilleure lisibilité
-    plt.suptitle(f'Variables discrètes : {title}', fontsize=15, y=0.97)  # Ajout du titre global
+    plt.suptitle(f'{title}', fontsize=15, y=0.97)  # Ajout du titre global
     plt.tight_layout()
     plt.show()
     

@@ -9,7 +9,7 @@ import scipy.stats as stats
 from statsmodels.formula.api import ols
 from matplotlib.colors import LinearSegmentedColormap
 
-import stats_fct as my
+import our_function as my
 
 #variables continues (age) boxplot, histogrammes, qqplot
 #variables discretes (enfants) diagrammes en batons
@@ -24,18 +24,18 @@ def map_acidity(value):
         return "basic"
     
 def map_quality(value):
-    if value > 6:
+    if value >= 7:
         return "good"
-    elif value > 5:
+    elif value >= 5:
         return "medium"
     else:
         return "bad"
 
 #load data form csv file
-num_data_red = pd.read_csv("winequality-red.csv", sep=';', decimal='.')
+num_data_red = pd.read_csv("../Bases de données/winequality-red.csv", sep=';', decimal='.')
 
 #load data form csv file
-num_data_white = pd.read_csv("winequality-white.csv", sep=';', decimal='.')
+num_data_white = pd.read_csv("../Bases de données/winequality-white.csv", sep=';', decimal='.')
 
 #define data columns as variables for easy access
 columns = ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide", "total sulfur dioxide","density","pH","sulphates","alcohol","quality"]
@@ -80,6 +80,8 @@ my.shapiro_wilk_test(density, 'density')
 
 
 my.bar_plot_discrete_variables(quality, 'quality')
+my.bar_plot_discrete_variables(num_data_white['quality'], 'White wine : quality', 'quality')
+my.bar_plot_discrete_variables(num_data_red['quality'], 'Red wine : quality', 'quality')
 my.plot_Categorial_distribution(categorized_acidity, 'categorized acidity')
 my.plot_Categorial_distribution(categorized_quality, 'categorized quality')
 my.plot_boxplot_histogram_qqplot(volatile_acidity, 'volatile acidity', 'volatile acidity', 'Count')
@@ -106,3 +108,9 @@ if p_value < alpha:
     print("Au risque de 5%, la concentration moyenne en alchool diffère significativement entre les vins des 3 indexs de qualité.")
 else:
     print("Au risque de 5%, il n'y a aucune différence significative des concentrations moyennes en alchool entre les vins des 3 indexs de qualité.")
+
+for i in num_data_red.items():
+    my.plot_boxplot_histogram_qqplot(i[1], 'Red wine : '+ i[0], i[0], 'Count')
+    
+for i in num_data_white.items():
+    my.plot_boxplot_histogram_qqplot(i[1], 'White wine : '+ i[0], i[0], 'Count')
