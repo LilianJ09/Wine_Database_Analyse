@@ -1,0 +1,7 @@
+OBJECTIF PRINCIPAL : Crée un modèle de régression linéaire multiple permettant de prédire la densité du vin (vin blanc / vin rouge):
+Sélectionner uniquement les variables influentes et éliminer les autres car elles pourraient apporter du bruit.
+
+Test de normalité + égalité (ANOVA) et variance     vin blanc / vin rouge
+-> pH, density, volatile acidity
+
+Test association de deux variables catégorielles  
