@@ -66,6 +66,19 @@ num_data_white.info()
 print(num_data_white.describe())
 print(num_data_white.groupby('quality').mean())#to look at all field inluences on quality value and find average values for each parameters
 
+'''
+#give tuples from dictionnaries whose contains keys and value
+for i in num_data_red.items():
+    my.plot_boxplot_histogram_qqplot(i[1], i[0], i[0], 'Count')
+'''
+my.plot_boxplot_histogram_qqplot(pH, 'pH', 'pH', 'Count')
+#volatile acidity , ph and density look as normal distribued - non normales a causes des valeurs particulières
+my.shapiro_wilk_test(volatile_acidity, 'volatile_acidity')
+my.shapiro_wilk_test(pH, 'pH')
+my.shapiro_wilk_test(density, 'density')
+
+
+
 my.bar_plot_discrete_variables(quality, 'quality')
 my.plot_Categorial_distribution(categorized_acidity, 'categorized acidity')
 my.plot_Categorial_distribution(categorized_quality, 'categorized quality')

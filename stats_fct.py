@@ -68,7 +68,7 @@ perform the Shapiro-Wilk test for normality
 Args : data (pd.Series): A pandas Series containing numeric data
 Returns : float the N test statistic, float the p-value for the hypothesis test
 """
-def shapiro_wilk_test(data):
+def shapiro_wilk_test(data, title):
     #remove NaN values which can't be handled by the Shapiro-wilk, enlever les données manquantes
     data_clean = data.dropna()
     
@@ -78,9 +78,9 @@ def shapiro_wilk_test(data):
     #interpreting the result
     alpha = 0.05
     if p_value>alpha:
-        print('X looks Gaussian (fail to reject H0)')
+        print(f'{title} looks Gaussian (fail to reject H0)')
     else:
-        print('X does not look Gaussian (reject H0)')
+        print(f'{title} does not look Gaussian (reject H0)')
         
     return stat, p_value
 # Créer une heat map à partir d'une matrice
