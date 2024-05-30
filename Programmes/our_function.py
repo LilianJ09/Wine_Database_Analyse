@@ -10,6 +10,27 @@ import scipy.stats as stats
 #variables discretes diagrammes en batons
 #variables catégorielles camembert, diagramme à bandole
 
+# Extracte the data base
+def extract_red_Wine():
+    return(pd.read_csv("../Bases de données/winequality-red.csv", sep=';', decimal='.'))
+
+def extract_white_Wine():
+    return(pd.read_csv("../Bases de données/winequality-white.csv", sep=';', decimal='.'))
+
+# to create categorized variable
+def map_acidity(value):
+    if value > 7:
+        return "acide"
+    else:
+        return "basic"   
+def map_quality(value):
+    if value >= 7:
+        return "good"
+    elif value >= 5:
+        return "medium"
+    else:
+        return "bad"
+
 def plot_boxplot_histogram_qqplot(data, title, xlabel, ylabel):
     plt.figure(figsize=(12,6))
     # Create a boxplot and a historgam for age VA
