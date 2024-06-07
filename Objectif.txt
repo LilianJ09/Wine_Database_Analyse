@@ -5,3 +5,16 @@ Test de normalité + égalité (ANOVA) et variance     vin blanc / vin rouge
 -> pH, density, volatile acidity
 
 Test association de deux variables catégorielles  
+
+verifier si le lien dans l'échantillon (tets de correlation) est significatif dans la population
+faire un test de correlation linéaire entre la variable cible et les autres au lieu de la regression lineaire
+ex estceque le 0.15 est significatif ou non (correlation densité et citric acid)
+faire une selection pour ne garder que les variables significatives dans une future regression lineaire multiple
+peut etre 2 variabnles qui mesure la meme chose, compromis complexité et efficacité
+exemple, l'alcool apporte de l'information qui est en partie apportée par le taux de sucre
+
+puis créer un vin et prédire sa densité avec le modèle  quel est le taux d'information restitué (ex modele qui explique 60% d'information de la densité) R^2
+R^2 ajusté pour la régression multiple (sanctionner par le nombre de variable pour ne pas avoir un modele trop gros)
+R^2 non ajusté artificiellement gonflé
+
+une seule variable box plot verif donnees atypiques (donnée influente) à garder où non
